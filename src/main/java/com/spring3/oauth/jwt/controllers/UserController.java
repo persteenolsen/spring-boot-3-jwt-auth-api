@@ -7,7 +7,6 @@ import com.spring3.oauth.jwt.services.JwtService;
 import com.spring3.oauth.jwt.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-//import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -44,17 +43,28 @@ public class UserController {
      @PostMapping("/login")
     public JwtResponseDTO AuthenticateAndGetToken(@RequestBody AuthRequestDTO authRequestDTO){
         Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authRequestDTO.getUsername(), authRequestDTO.getPassword()));
-        if(authentication.isAuthenticated()){
-           
-           String uName = authRequestDTO.getUsername();
+       
+        // Note: Successfull Login when user = user 
+        // Not successfull Login when User <> user
+        String clientUserName = authRequestDTO.getUsername();
+        String authUserName = authentication.getName();
+        boolean auth = false;
 
+        // true if the User type a username = the username in the db
+        if( clientUserName.equals(authUserName))
+            auth = true;
+
+        // true if the User type a username = the username in the db and the User is Authenticated
+        if(auth && authentication.isAuthenticated()){
+           
            return JwtResponseDTO.builder()
 
                    // Sending the JWT AccessToken to the client for AUTH in future requests
                    .accessToken(jwtService.GenerateToken(authRequestDTO.getUsername()))
-
+                  
+                   //.userName( "clientUserName: " + clientUserName + " AuthUserName: " + authUserName )
                    // Sending username to client for a welcome greeting when logged in
-                   .userName( uName )
+                   .userName( clientUserName )
                    .build();
         } else {
             throw new UsernameNotFoundException("invalid user request..!!");
@@ -87,7 +97,7 @@ public class UserController {
     // It is protected by Auth and by Role
     // Note: If the User have the role USER instead of ADMIN there will be a 403 forbidden
     @SuppressWarnings("rawtypes")
-   // @PreAuthorize("hasAuthority('ADMIN')")
+    //@PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/users")
     public ResponseEntity getAllUsers() {
         try {
