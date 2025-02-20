@@ -11,6 +11,10 @@
     <groupId>com.spring3.oauth.jwt</groupId>
     <artifactId>oauth-jwt</artifactId>
     <version>0.0.1-SNAPSHOT</version>
+
+    <!--Making a war package for deploy to Tomcat-->
+	<packaging>war</packaging>
+
     <name>spring-boot-3-jwt-aut-api</name>
     <description>Spring Boot 3 JWT Auth API</description>
     <properties>
@@ -30,6 +34,8 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
+
+        <!--Include Starters like Web, JSON, Tomcat and -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
