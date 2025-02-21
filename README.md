@@ -1,6 +1,6 @@
 # Spring Boot 3 JWT Auth Api
 
-Last updated: 20-02-2025
+Last updated: 21-02-2025
 
 - Spring Boot 3 REST API with JWT Authentication
 
@@ -10,7 +10,7 @@ Last updated: 20-02-2025
 
 - Spring Boot 3
 
-- Using CORS
+- Using settings for CORS
 
 - Using Spring Security for protecting the url end points
 
