@@ -33,7 +33,7 @@ public class UserController {
    @GetMapping("/hello")
    public String hello() {
    try {
-       return "Hello from a public endpoint...";
+       return "01-09-2025 - Hello from a public endpoint ...";
    } catch (Exception e){
        throw new RuntimeException(e);
    }
@@ -84,7 +84,7 @@ public class UserController {
         }
     }
        
-    // It is protected by Auth
+    // It is protected by Auth - take a look at the SecurityConfig.java
     @GetMapping("/ping")
     public String ping() {
     try {
