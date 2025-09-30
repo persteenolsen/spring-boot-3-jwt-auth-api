@@ -1,6 +1,6 @@
 # Spring Boot 3 JWT Auth Api
 
-Last updated: 01-09-2025
+Last updated: 30-09-2025
 
 - Spring Boot 3 REST API with JWT Authentication
 
