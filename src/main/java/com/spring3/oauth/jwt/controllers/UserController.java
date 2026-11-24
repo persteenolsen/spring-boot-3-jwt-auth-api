@@ -33,7 +33,7 @@ public class UserController {
    @GetMapping("/hello")
    public String hello() {
    try {
-       return "26-09-2026 - Hello from a public endpoint ...";
+       return "24-11-2026 - Hello from a public endpoint ...";
    } catch (Exception e){
        throw new RuntimeException(e);
    }
